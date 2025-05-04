@@ -376,7 +376,7 @@ htmltools::div(
 )
 ```
   
-### **4.3 Correlation (examining relationships between steps, sleep, and calories)**
+### **4.3 Correlation (examining relationships of daily steps with daily sleep and calories)**
   
 **Daily steps vs daily sleep Correlation Value** 
 ```{r}
@@ -384,6 +384,13 @@ round(cor(Daily_Activity_Sleep$totalsteps, Daily_Activity_Sleep$totalminutesasle
 ```
   
 **Daily steps vs calories Correlation Value** 
+```{r}
+round(cor(Daily_Activity_Sleep$totalsteps, Daily_Activity_Sleep$calories, use = "complete.obs"), 2)
+```
+  
+### **4.4 Correlation (examining relationships of Calories with daily steps, total distance and daily sleep)**
+  
+  **Daily steps vs calories Correlation Value** 
 ```{r}
 round(cor(Daily_Activity_Sleep$totalsteps, Daily_Activity_Sleep$calories, use = "complete.obs"), 2)
 ```
@@ -403,7 +410,7 @@ round(cor(Daily_Activity_Sleep$totalminutesasleep, Daily_Activity_Sleep$calories
   
 ### **Visualize Key Insights**
   
-**User Type Classification**  
+**5.1 User Type Classification**  
   
 *Pie chart for User Type Distribution*
 ```{r}
@@ -411,39 +418,50 @@ user_type_percent %>%
   ggplot(aes(x = "", y = percentage, fill = user_type)) +
   geom_bar(stat = "identity", width = 1, color = "white") +
   coord_polar("y", start = 0) +
-  theme_minimal()+
-  theme(axis.title.x = element_blank(),
-        axiis.title.y = element_blank(),
-        panel.border = element_blank(),
-        panel.grid = element_blank(),
-        axis.ticks = element_blank(),
-        axis.text.x = element_blank(),
-        plot.title = element_text(hjust = 0.5, size = 14, face = "bold"))+
-  scale_fill_manual(values = c("#BB3E00", "#657C6A", "#F7AD45", "#A2B9A7"))+
+  theme_minimal(base_size = 12) +
+  theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    panel.border = element_blank(),
+    panel.grid = element_blank(),
+    axis.ticks = element_blank(),
+    axis.text.x = element_blank(),
+    plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
+    legend.position = "right"
+  ) +
+  scale_fill_manual(values = c("#BB3E00", "#657C6A", "#F7AD45", "#A2B9A7")) +
   geom_text(aes(label = percentage),
-            position = position_stack(vjust = 0.5))+
-  labs(title = "User Type Distribution")
+            position = position_stack(vjust = 0.5), size = 4, color = "white", fontface = "bold") +
+  labs(title = "User Type Distribution", fill = "User Type")
 ```
   
-**Hourly Steps Throughout The Day**  
+**5.2 Hourly Steps Throughout The Day**  
   
 *Bar chart for Hourly Steps Throughout The Day*
 ```{r}
 Hourly_Steps %>% 
   group_by(time) %>% 
   summarize(average_steps = mean(steptotal)) %>% 
-  ggplot() +
-  geom_col(mapping = aes(x = time, y = average_steps, fill = average_steps)) +
-  labs(title = "Hourly steps throughout the day", x="", y="") +
+  ggplot(aes(x = time, y = average_steps, fill = average_steps)) +
+  geom_col(color = "white") +
+  labs(title = "Hourly Steps Throughout the Day", x = "", y = "") +
   scale_fill_gradient(low = "#A2B9A7", high = "#BB3E00") +
-  theme(axis.text.x = element_text(angle = 90))
+  theme_minimal(base_size = 12) +
+  theme(
+    axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank(),
+    panel.border = element_blank(),
+    panel.grid = element_blank(),
+    axis.ticks = element_blank(),
+    plot.title = element_text(hjust = 0.5, size = 14, face = "bold"),
+    legend.position = "right"
+  )
 ```
   
-**Correlation (examining relationships between steps, sleep, and calories)** 
+**5.3 Comparative Analysis of daily steps with daily sleep and calories**  
   
-**1. Daily steps and daily sleep**  
-**2. Daily steps and calories**
-```{r}
+```{r, fig.width=10, fig.height=6}
 ggarrange(
   
   ggplot(Daily_Activity_Sleep, aes(x = totalsteps, y = totalminutesasleep)) +
@@ -470,14 +488,11 @@ ggarrange(
       theme(panel.background = element_blank(), plot.title = element_text(size = 14)
       )
   )
-
-
 ```
- 
-**3. Daily steps calories**   
-**4. Total distance and calories**  
-**5. Daily sleep and Calories**  
-```{r}
+  
+**5.4 Comparative Analysis of Calories with daily steps, total distance and daily sleep**  
+  
+```{r, fig.width=10, fig.height=12}
 ggarrange(
   
   ggplot(Daily_Activity_Sleep, aes(x = totalsteps, y = calories)) +
@@ -537,22 +552,27 @@ Most steps are taken during the day, especially between 9 AM and 7 PM.
 **•	Implication**:  
 Wellness programs or app notifications could be scheduled to motivate users during periods of low activity, such as mid-morning or early afternoon.  
   
-**3. Relationship Between Steps, Sleep, and Calories ** 
-  
-**•	Daily Steps vs. Daily Sleep:**  
-**•	Correlation**: Weak negative correlation (r ≈ -0.19).  
-**•	Interpretation**: Users who take more steps tend to have slightly less sleep, but the relationship is weak and likely influenced by other factors.  
-  
-**•	Daily Steps vs. Calories**:  
-**•	Correlation**: Moderate positive correlation (r ≈ 0.41).  
-**•	Interpretation**: Users who take more steps tend to burn more calories, as expected. 
-  
+**3. Comparative Analysis of daily steps with daily sleep and calories**  
+**•	Observation**:  
+The relationship between steps and calories (0.41) is substantially stronger than between steps and sleep (-0.19).  
 **•	Key Finding**:  
-Step count is a better predictor of calories burned than of sleep duration.  
+Physical activity has a more direct and predictable impact on calorie expenditure than on sleep patterns.  
 **•	Implication**:  
-Activity-based calorie tracking is reliable, but sleep recommendations should consider additional factors beyond physical activity.  
-
-**4. Data Quality and Limitations** 
+Wellness recommendations should emphasize the reliable connection between activity and calorie burn, while acknowledging that sleep optimization may require consideration of additional factors beyond step count.
+  
+**4. Comparative Analysis of Calories with daily steps, total distance and daily sleep**  
+**•	Observation**:  
+Daily distance vs Calories shows the strongest positive correlation (0.52), indicating that distance covered is the best predictor of calories burned among the three metrics.  
+Daily steps vs Calories also demonstrates a moderate positive correlation (0.41), meaning more steps generally lead to more calories burned, but the relationship is not as strong as with distance.  
+Daily sleep vs Calories displays almost no correlation (-0.03), suggesting that sleep duration has virtually no impact on calorie expenditure in this dataset.  
+**•	Key Finding**:  
+Both activity-based metrics (steps and distance) are positively and significantly related to calorie burn, with distance being the more reliable predictor.  
+Sleep duration does not meaningfully influence calories burned, as shown by the flat trend and near-zero correlation. 
+**•	Implication**:  
+For users and product design: Focusing on increasing daily distance and step count can effectively help users boost their calorie burn. Features or challenges that track and encourage these activities are likely to be most impactful for fitness and weight management goals.  
+For wellness recommendations: Calorie management strategies should be based on activity metrics rather than sleep duration. Sleep guidance should focus on other health outcomes, as it does not directly affect calorie expenditure in this population.  
+  
+**5. Data Quality and Limitations** 
 **•	Data Quality**:  
 The dataset required cleaning for duplicates, missing values, and inconsistent formats, which was addressed in the preparation steps.  
 **•	Limitations**:  
