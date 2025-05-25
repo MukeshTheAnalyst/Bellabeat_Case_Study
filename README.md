@@ -1,10 +1,13 @@
 # Bellabeat_Case_Study
 ### Google Data Analytics course - Capstone Project
 
-**[Check Analysis](https://mukeshtheanalyst.github.io/Bellabeat_Case_Study/BellabeatCaseStudy_2025_05_03_v01.html)**
 
 # Project Background and Overview
+This repository presents a comprehensive data analysis case study of Bellabeat, a pioneering company in women’s wellness technology, as visualized in the interactive dashboard:
+**[Bellabeat Case Study Dashboard](https://mukeshtheanalyst.github.io/Bellabeat_Case_Study/BellabeatCaseStudy_2025_05_03_v01.html)**
+
 This repository presents a comprehensive data analysis case study of Bellabeat, a pioneering company in women’s wellness technology. As a junior data analyst, I collaborated with Bellabeat’s marketing and executive teams to uncover actionable insights from real-world smart device usage data. The project follows a structured data science workflow-Ask, Prepare, Process, Analyze, Share, and Act-focusing on how activity, sleep, and step-tracking data can inform Bellabeat’s product design and marketing strategies. The analysis showcases my skills in R programming, data cleaning, transformation, and visualization, with the aim of improving user engagement and supporting Bellabeat’s mission to empower women’s health.
+
 
 # Data Structure Overview
 ## Data Source
@@ -101,5 +104,21 @@ Story: Physical activity alone does not strongly influence sleep duration, sugge
 * **Enhanced Data Collection**: Invest in gathering more recent and diverse user data for richer, more actionable insights.
 
 * **Sleep Guidance**: Integrate additional wellness factors (stress, hydration, mindfulness) into sleep recommendations for a more comprehensive approach.
+
+
+# How to Use
+**1. View the Analysis:**
+Open the RMarkdown file in RStudio to see the full workflow, including data cleaning, analysis, and visualizations.
+
+**2. Reproduce Results:**
+Download the repository, install required R packages, and knit the RMarkdown file to generate your own report.
+
+**3. Explore the Data:**
+Use the provided CSV files to run your own analyses or modify the code for new insights.
+
+
+# Author
+Mukesh Shirke
+
 
 **Explore the RMarkdown file for detailed code, data cleaning steps, visualizations, and the full analysis process. This project demonstrates my expertise in data analysis, R programming, and the application of data-driven insights to real-world business challenges in the health tech industry.**
