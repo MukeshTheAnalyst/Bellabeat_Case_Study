@@ -1,6 +1,8 @@
 # Bellabeat_Case_Study
 ### Google Data Analytics course - Capstone Project
 
+**[Check Analysis](https://mukeshtheanalyst.github.io/Bellabeat_Case_Study/BellabeatCaseStudy_2025_05_03_v01.html)**
+
 # Project Background and Overview
 This repository presents a comprehensive data analysis case study of Bellabeat, a pioneering company in women’s wellness technology. As a junior data analyst, I collaborated with Bellabeat’s marketing and executive teams to uncover actionable insights from real-world smart device usage data. The project follows a structured data science workflow-Ask, Prepare, Process, Analyze, Share, and Act-focusing on how activity, sleep, and step-tracking data can inform Bellabeat’s product design and marketing strategies. The analysis showcases my skills in R programming, data cleaning, transformation, and visualization, with the aim of improving user engagement and supporting Bellabeat’s mission to empower women’s health.
 
